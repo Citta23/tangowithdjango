@@ -6,7 +6,7 @@ from django.contrib import admin
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, request, url):
-        return '/rango/'
+        return '/rango/add_profile/'
 
 urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
