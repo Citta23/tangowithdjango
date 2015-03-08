@@ -5,19 +5,20 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block body_block %}
-    <div class="page-header">
-        <h1>{{ user.username }}</h1>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="page-header">
+            <h1>{{ user.username }}</h1>
+        </div>
 
-        <p>Email: {{ user.email }}</p>
+            <p>Email: {{ user.email }}</p>
 
-        {% if userprofile %}
-            <p>Website: <a href="{{ userprofile.website }}">{{ userprofile.website }}</a></p>
+            {% if userprofile %}
+                <p>Website: <a href="{{ userprofile.website }}">{{ userprofile.website }}</a></p>
 
-            {% if userprofile.picture %}
-                <img src="{{ userprofile.picture.url }}"  />
+                {% if userprofile.picture %}
+                    <img src="{{ userprofile.picture.url }}"  />
+                {% endif %}
             {% endif %}
-        {% endif %}
-
+    {% endif %}
 {% endblock %}
 

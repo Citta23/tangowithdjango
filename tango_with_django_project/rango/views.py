@@ -178,6 +178,7 @@ def register_profile(request):
     return render(request, 'rango/profile_registration.html', {'user_profile_form': form})
 
 
+@login_required
 def profile(request, username):
     context_dict = {}
     user = User.objects.get(username=username)
@@ -193,7 +194,7 @@ def profile(request, username):
 
     return render(request, 'rango/profile.html', context_dict)
 
-
+@login_required
 def my_profile(request):
     user = User.objects.get(username=request.user)
 
@@ -205,7 +206,7 @@ def my_profile(request):
     return render(request, 'rango/profile.html', {'user': user, 'userprofile': user_profile})
 
 
-
+@login_required
 def user(request):
     user = User.objects.all()
     return render(request, 'rango/user.html', {'users': user})

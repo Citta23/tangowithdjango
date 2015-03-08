@@ -34,9 +34,9 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'user' %}">User</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'my_profile' %}">Profile</a></li>
+                        <li><a href="{% url 'user' %}">User</a></li>
                         <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
                         <li><a href="{% url 'auth_password_change' %}">Change Password</a></li>
                         <li><a href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
