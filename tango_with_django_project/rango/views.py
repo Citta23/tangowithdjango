@@ -157,9 +157,9 @@ def register_profile(request):
     if request.method == 'POST':
         try:
             profile = UserProfile.objects.get(user=request.user)
-            form = UserProfileForm(request.POST, request.FILES, instance=request.user)
+            form = UserProfileForm(request.POST, instance=profile)
         except:
-            form = UserProfileForm(request.POST, request.FILES)
+            form = UserProfileForm(request.POST)
         if form.is_valid():
             if request.user.is_authenticated():
                 profile = form.save(commit=False)
@@ -174,7 +174,12 @@ def register_profile(request):
             print form.errors
         return index(request)
     else:
-        form = UserProfileForm(request.POST)
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            form = UserProfileForm(instance=profile)
+        except:
+            form = UserProfileForm()
+
     return render(request, 'rango/profile_registration.html', {'user_profile_form': form})
 
 
@@ -193,17 +198,6 @@ def profile(request, username):
     context_dict['userprofile'] = user_profile
 
     return render(request, 'rango/profile.html', context_dict)
-
-@login_required
-def my_profile(request):
-    user = User.objects.get(username=request.user)
-
-    try:
-        user_profile = UserProfile.objects.get(user=user)
-    except:
-        user_profile = None
-
-    return render(request, 'rango/profile.html', {'user': user, 'userprofile': user_profile})
 
 
 @login_required

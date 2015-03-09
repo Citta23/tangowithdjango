@@ -3,6 +3,9 @@
 {% block title %}User Profile Registration{% endblock %}
 
 {% block body_block %}
+    <div class="page-header">
+        <h1>Add Profile</h1>
+    </div>
 
     <form id="user_profile_form" method="post" action="/rango/add_profile/" enctype="multipart/form-data">
     {% csrf_token %}

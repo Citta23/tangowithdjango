@@ -67,7 +67,7 @@ def populate():
 
     add_page(cat=my_cat,
              title="pythonanywhere.com page ",
-             url="https://www.pythonanywhere.com/user/Citta23/consoles/",
+             url="http://citta23.pythonanywhere.com/rango/",
              views=7)
 
     for c in Category.objects.all():
@@ -76,8 +76,7 @@ def populate():
 
 
 def add_page(cat, title, url, views):
-    p = Page.objects.get_or_create(category=cat, title=title)[0]
-    p.url = url
+    p = Page.objects.get_or_create(category=cat, title=title, url=url)[0]
     p.views = views
     return p
 
